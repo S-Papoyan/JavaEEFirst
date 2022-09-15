@@ -13,8 +13,11 @@ public class MyDataSource {
 
     public static Connection getConnection() {
         try {
+            Class.forName("commysql.jdbc.Driver");
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        } catch (SQLException e) {
+
+
+        } catch (SQLException | ClassNotFoundException  e) {
             throw new RuntimeException(e);
         }
         return connection;

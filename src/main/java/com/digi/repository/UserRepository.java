@@ -1,5 +1,6 @@
 package com.digi.repository;
 
+import com.digi.util.GenerateTokens;
 import com.digi.util.MyDataSource;
 
 import java.sql.Connection;
@@ -20,12 +21,14 @@ public class UserRepository {
         }
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into users values(0,?,?,?,?,?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into users values(0,?,?,?,?,?,?)");
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, surname);
             preparedStatement.setInt(3, age);
             preparedStatement.setString(4, email);
             preparedStatement.setString(5, password);
+            preparedStatement.setString(6, GenerateTokens.generateVerifyCode());
+
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

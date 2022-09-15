@@ -18,5 +18,6 @@ public class RegistrationServlet extends HttpServlet {
         String password = request.getParameter("password");
         UserRepository userRepository = new UserRepository();
         userRepository.insert(name, surname, Integer.parseInt(age), email, password);
+        response.sendRedirect("/homePage.jsp");
     }
 }
